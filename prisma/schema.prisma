@@ -15,5 +15,28 @@ datasource db {
 
 model User{
   id Int @id @default(autoincrement())
+  name String?
+  email String
+  isAdmin Boolean
+  preference Json
+  Post Post[]
+}
+
+model Post{
+  id Int @id @default(autoincrement())
+  rating Float
+  createdAt DateTime
+  updatedAt DateTime
+  author User @relation(fields: [userId], references: [[id]])
+  userId Int
+}
+
+model Beat{
+  id Int @id @default(autoincrement())
   name String
+  genre String
+  price Int
+  bpm Int
+  key String
+  thumbnail String
 }
